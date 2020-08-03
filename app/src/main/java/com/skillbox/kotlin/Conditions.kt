@@ -1,40 +1,39 @@
 package com.skillbox.kotlin
 
 fun main() {
-    println(getDeveloperPosition(-1))
-    println(getDeveloperPosition(0))
-    println(getDeveloperPosition(1))
-    println(getDeveloperPosition(3))
-    println(getDeveloperPosition(7))
+    println(maxInt(7, 9))
+    println(calculatePrice(true))
+    println(getCarType(100))
+    println(getDevdloperPosition(0))
 }
 
-fun maxInt(a: Int, b: Int): Int = if (a < b) b else a
+fun maxInt(a: Int, b: Int): Int = if (a > b) a else b
 
 fun calculatePrice(booleanParam: Boolean): Int {
-    return if (booleanParam) {
-        val intermediateResult = 678 + 432
-        intermediateResult + 3
+    return if(booleanParam) {
+        val intResult = 663
+        intResult + 3
     } else {
-        val intermediateResult = 88 + 82
-        intermediateResult + 9
+        val intResult = 663
+        intResult + 2
     }
 }
 
-fun getCarType(maxSpeed: Int, hasSportMode: Boolean): String {
+fun getCarType(maxSpeed: Int): String {
     return when {
         maxSpeed < 20 -> "Трактор"
         maxSpeed < 60 -> "Медленная машина"
-        hasSportMode && maxSpeed < 200 -> "Обычная машина"
+        maxSpeed < 150 -> "Обычная машина"
         else -> "Быстрая машина"
     }
 }
 
-fun getDeveloperPosition(experience: Int): String {
-    return if (experience < 0) {
-        "Не может быть отрицательным"
+fun getDevdloperPosition(experience: Int): String {
+    return if(experience < 0) {
+        "Неверный опыт"
     } else {
-        when (experience) {
-            0 -> "Стажер"
+        when(experience) {
+            0 -> "Intern"
             in 1..2 -> "Junior"
             in 3..4 -> "Middle"
             else -> "Senior"
