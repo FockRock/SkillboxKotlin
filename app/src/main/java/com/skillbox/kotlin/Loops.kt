@@ -92,7 +92,7 @@ fun printChars() {
 }
 
 fun printEvenNumberFor(n: Int) {
-    val range: IntProgression = 0 .. n step 2
+    val range: IntProgression = 0..n step 2
     for (currentNumber in range) {
         println(currentNumber)
     }
