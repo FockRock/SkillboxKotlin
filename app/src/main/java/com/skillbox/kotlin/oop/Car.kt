@@ -1,49 +1,46 @@
 package com.skillbox.kotlin.oop
 
-class Car constructor (
-    val wheelCount: Int = 4,
-    val doorCount: Int = 4,
-    val bodyLength: Int,
-    val bodyWidth: Int,
-    val bodyHeight: Int
-)   {
-    var currentSpeed: Int = 0
-        get() {
-            println("Current speed get")
-            return field
-        }
-        private set(value) {
-            println("Current speed set $value")
-            field = value
-        }
+class Car(
+    val wheelCount: Int,
+    val doorCount: Int,
+    maxSpeed: Int
+): Vehicle(maxSpeed) {
 
-    var fuelTank: Int = 0
+    var isDoorOpen: Boolean = false
         private set
 
-    private fun useFuel (fuelCount: Int) {
-        fuelTank -= fuelCount
-    }
-
-    fun accelerate (speed: Int) {
-        val needFuel = speed/2
-
-        if (fuelTank >= needFuel) {
-            currentSpeed += speed
-            useFuel(speed/2)
+    fun openDoor() {
+        if (isDoorOpen) {
+            println("Door already opened!")
         } else {
-            println("Car has no fuel. Please refuel the tank!")
+            isDoorOpen = true
         }
     }
 
-    fun decelerate (speed: Int) {
-        currentSpeed = maxOf(0, currentSpeed - speed)
-    }
-
-    fun refuel (fuelCount: Int) {
-        if (currentSpeed == 0) {
-            fuelTank += fuelCount
+    fun closeDoor() {
+        if (isDoorOpen) {
+            isDoorOpen = false
         } else {
-            println("Stop the car!")
+            println("Door already closed!")
         }
     }
+
+    override fun accelerate(speed: Int) {
+        if (isDoorOpen) {
+            println("You can't accelerate with opened door.")
+        } else {
+            super.accelerate(speed)
+        }
+    }
+
+    fun accelerate(speed: Int, force: Boolean) {
+        if(force) {
+            if (isDoorOpen) println("Warning: You accelerate, while door is opened!")
+            super.accelerate(speed)
+        } else {
+            accelerate(speed)
+        }
+    }
+
+    override fun getTitle(): String = "Car"
 }

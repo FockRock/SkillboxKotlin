@@ -1,13 +1,31 @@
 package com.skillbox.kotlin
 
-import com.skillbox.kotlin.oop.Car
+import com.skillbox.kotlin.oop.*
 
 fun main() {
-    val tesla = Car(
-        wheelCount = 4, doorCount = 2, bodyLength = 500, bodyWidth = 200, bodyHeight = 150
-    )
+    val tesla = Car(wheelCount = 4, doorCount = 2, maxSpeed = 120)
 
-    tesla.refuel(400)
-    tesla.accelerate(34)
-    tesla.decelerate(2)
+    with(tesla) {
+        refuel(100)
+        openDoor()
+        accelerate(100)
+        accelerate(100,true)
+    }
+
+    val vehicle: Vehicle = tesla
+
+    println("vehicle is car = ${vehicle is Car}")
+    println("tesla is vehicle = ${tesla is Vehicle}")
+    println("vehicle is car = ${Vehicle(23) is Car}")
+
+    val newCar: Car = vehicle as Car
+    newCar.closeDoor()
+
+    listOf<Vehicle>(
+        Vehicle(200),
+        Car(wheelCount = 4, doorCount = 2, maxSpeed = 120),
+        Airplane(300)
+    ).forEach {
+        println(it.getTitle())
+    }
 }
