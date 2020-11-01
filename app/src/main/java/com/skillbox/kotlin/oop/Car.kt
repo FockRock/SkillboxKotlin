@@ -1,32 +1,37 @@
 package com.skillbox.kotlin.oop
 
-class Car constructor(
-    val wheelsCount: Int = 4,
-    val doorsCount: Int = 4,
+class Car constructor (
+    val wheelCount: Int = 4,
+    val doorCount: Int = 4,
     val bodyLength: Int,
     val bodyWidth: Int,
     val bodyHeight: Int
-){
+)   {
     var currentSpeed: Int = 0
         get() {
             println("Current speed get")
             return field
         }
         private set(value) {
-            println("Current speed set")
+            println("Current speed set $value")
             field = value
         }
-    var fuelCount: Int = 0
+
+    var fuelTank: Int = 0
         private set
 
-    fun accelerate (speed: Int) {
-        val needFuel = speed/10
+    private fun useFuel (fuelCount: Int) {
+        fuelTank -= fuelCount
+    }
 
-        if (fuelCount >= needFuel) {
+    fun accelerate (speed: Int) {
+        val needFuel = speed/2
+
+        if (fuelTank >= needFuel) {
             currentSpeed += speed
-            useFuel(needFuel)
+            useFuel(speed/2)
         } else {
-            println("Car has no fuel!")
+            println("Car has no fuel. Please refuel the tank!")
         }
     }
 
@@ -34,15 +39,11 @@ class Car constructor(
         currentSpeed = maxOf(0, currentSpeed - speed)
     }
 
-    private fun useFuel (fuelCount: Int) {
-        this.fuelCount -= fuelCount
-    }
-
     fun refuel (fuelCount: Int) {
         if (currentSpeed == 0) {
-            this.fuelCount += fuelCount
+            fuelTank += fuelCount
         } else {
-            println("Stop!")
+            println("Stop the car!")
         }
     }
 }

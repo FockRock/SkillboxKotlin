@@ -1,11 +1,13 @@
 package com.skillbox.kotlin
+
 import com.skillbox.kotlin.oop.Car
 
 fun main() {
-    val tesla = Car (
-        4, 2, 500, 200, 150
+    val tesla = Car(
+        wheelCount = 4, doorCount = 2, bodyLength = 500, bodyWidth = 200, bodyHeight = 150
     )
-    println("Car speed = ${tesla.currentSpeed}")
-    tesla.accelerate(100)
-    println("Car speed = ${tesla.currentSpeed}")
+
+    tesla.refuel(400)
+    tesla.accelerate(34)
+    tesla.decelerate(2)
 }
