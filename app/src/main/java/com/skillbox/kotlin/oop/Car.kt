@@ -43,4 +43,27 @@ class Car(
     }
 
     override fun getTitle(): String = "Car"
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Car
+
+        if (wheelCount != other.wheelCount) return false
+        if (doorCount != other.doorCount) return false
+        if (isDoorOpen != other.isDoorOpen) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = wheelCount
+        result = 31 * result + doorCount
+        result = 31 * result + isDoorOpen.hashCode()
+        return result
+    }
+
+    operator fun component1(): Int = wheelCount
+    operator fun component2(): Int = doorCount
 }
