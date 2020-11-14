@@ -9,23 +9,43 @@ class Car(
     var isDoorOpen: Boolean = false
         private set
 
+
+    operator fun component1(): Int = wheelCount
+    operator fun component2(): Int = doorCount
+
+    private lateinit var driver: User
+
+    private val engine by lazy {
+        Engine()
+    }
+
+    fun setDriver(driver: User) {
+        this.driver = driver
+    }
+
     fun openDoor() {
         if (isDoorOpen) {
             println("Door already opened!")
         } else {
             isDoorOpen = true
+            println("Door opened!")
         }
     }
 
     fun closeDoor() {
         if (isDoorOpen) {
             isDoorOpen = false
+            println("Door closed!")
+            if (::driver.isInitialized) {
+                println("driver = $driver")
+            }
         } else {
             println("Door already closed!")
         }
     }
 
     override fun accelerate(speed: Int) {
+        engine.use()
         if (isDoorOpen) {
             println("You can't accelerate with opened door.")
         } else {
@@ -63,7 +83,4 @@ class Car(
         result = 31 * result + isDoorOpen.hashCode()
         return result
     }
-
-    operator fun component1(): Int = wheelCount
-    operator fun component2(): Int = doorCount
 }

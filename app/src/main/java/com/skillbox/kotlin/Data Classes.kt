@@ -1,6 +1,7 @@
 package com.skillbox.kotlin
 
 import com.skillbox.kotlin.oop.Car
+import com.skillbox.kotlin.oop.User
 
 fun main() {
     val user1 = User("name1", "lastName1")

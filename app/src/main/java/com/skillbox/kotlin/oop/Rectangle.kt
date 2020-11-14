@@ -1,11 +1,17 @@
 package com.skillbox.kotlin.oop
 
+import com.skillbox.kotlin.PrintAreaOnChangeDelegate
+
 class Rectangle(
     x: Int,
     y: Int,
-    private val width: Int,
-    private val height: Int
+    width: Int,
+    height: Int
 ): AbstractShape(x, y), Comparable<Rectangle> {
+
+    var width: Int by PrintAreaOnChangeDelegate(width)
+    var height: Int by PrintAreaOnChangeDelegate(height)
+
 
     override val name: String = "Rectangle"
 

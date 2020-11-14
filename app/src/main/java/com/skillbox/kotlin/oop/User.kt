@@ -1,4 +1,4 @@
-package com.skillbox.kotlin
+package com.skillbox.kotlin.oop
 
 data class User (
     val name: String,
