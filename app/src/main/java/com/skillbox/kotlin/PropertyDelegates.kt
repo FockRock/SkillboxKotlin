@@ -22,7 +22,6 @@ fun main() {
     car.accelerate(100)
 
 }
-
 class PrintAreaOnChangeDelegate <T> (
     private var value: T
 ): ReadWriteProperty<Shape, T> {
