@@ -83,4 +83,12 @@ class Car(
         result = 31 * result + isDoorOpen.hashCode()
         return result
     }
+
+    companion object {
+        val default = Car(4,4,200)
+
+        fun createWithDefaultWheelCount(doorCount: Int, maxSpeed: Int) : Car {
+            return Car (4,doorCount,maxSpeed)
+        }
+    }
 }
