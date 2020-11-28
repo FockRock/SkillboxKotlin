@@ -1,6 +1,7 @@
 package com.skillbox.kotlin.oop
 
 import com.skillbox.kotlin.PrintAreaOnChangeDelegate
+import com.skillbox.kotlin.R
 
 class Rectangle(
     x: Int,
@@ -23,5 +24,13 @@ class Rectangle(
 
     override fun toString(): String {
         return "Rectangle(width=$width, height=$height, name='$name')"
+    }
+
+    operator fun plus(other: Rectangle): Rectangle {
+        return Rectangle(0, 0, width + other.width, height + other.height)
+    }
+
+    operator fun unaryMinus(): Rectangle {
+        return Rectangle(0, 0, -width, -height)
     }
 }
