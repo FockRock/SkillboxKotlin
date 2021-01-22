@@ -2,29 +2,36 @@ package com.skillbox.kotlin
 
 fun main() {
     val genericObject = GenericClass<Double>(1.2)
-    genericObject.updateItem(2.2)
 
-    val genericObject2 = GenericClass<Double>(1.2)
-    genericObject.updateItem(2.2)
+    val genericObject2 = GenericClass<Float>(1.2f)
 
-    sumGeneric(genericObject, genericObject2)
+    println(sumGeneric(genericObject, genericObject2))
 
-    printGenericObject(33)
+    updateContrVariant(ContrvariantClass<Any>(2))
 }
 
-class GenericClass<T: Number>(defaultValue: T) {
-    var item: T = defaultValue
-        private set
+class GenericClass<out T: Number>(defaultValue: T) {
+    private var item: T = defaultValue
 
-    fun updateItem(newItem: T) {
-        item = newItem
-        item?.toFloat()
-        item?.toInt()
+    fun getItem(): T {
+        return item
     }
 }
 
-fun sumGeneric(a: GenericClass<Number>, b: GenericClass<Number>): Int {
-    return a.item.toInt() + b.item.toInt()
+class ContrvariantClass<in T>(defaultValue: T) {
+    private var item: T = defaultValue
+
+    fun setItem(newItem: T) {
+        item = newItem
+    }
+}
+
+fun updateContrVariant(input: ContrvariantClass<Number>) {
+    input.setItem(2.2)
+}
+
+fun sumGeneric(a: GenericClass<Number>, b: GenericClass<Number>): Double {
+    return a.getItem().toDouble() + b.getItem().toDouble()
 }
 
 fun <T> printGenericObject(item: T) {
