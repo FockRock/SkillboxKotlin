@@ -23,19 +23,19 @@ class Car(
         this.driver = driver
     }
 
-    fun openDoor() {
+    fun openDoor(openCallback: () -> Unit = { println("Open door") }) {
         if (isDoorOpen) {
             println("Door already opened!")
         } else {
+            openCallback()
             isDoorOpen = true
-            println("Door opened!")
         }
     }
 
-    fun closeDoor() {
+    fun closeDoor(closeCallback: () -> Unit = { println("Close door") }) {
         if (isDoorOpen) {
             isDoorOpen = false
-            println("Door closed!")
+            closeCallback()
             if (::driver.isInitialized) {
                 println("driver = $driver")
             }
