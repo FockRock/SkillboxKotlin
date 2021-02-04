@@ -23,7 +23,7 @@ class Car(
         this.driver = driver
     }
 
-    fun openDoor(openCallback: () -> Unit = { println("Open door") }) {
+    fun openDoor(openCallback: () -> Unit = { println("Cpen door")}) {
         if (isDoorOpen) {
             println("Door already opened!")
         } else {
