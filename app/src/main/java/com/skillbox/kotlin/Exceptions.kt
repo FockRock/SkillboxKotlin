@@ -4,6 +4,19 @@ import java.lang.Exception
 import java.lang.NullPointerException
 
 fun main() {
+//    try {
+//        println("before")
+//        functionWithException()
+//        println("after")
+//    } catch (t: NullPointerException) {
+//        println("catch null exception with info: ${t.message}")
+//    } catch (t: Exception) {
+//        println("catch exception with info: ${t.message}")
+//    } catch (t: Throwable) {
+//        println("catch throwable with info: ${t.message}")
+//    } finally {
+//        println("finally")                                                                          //Выполняется в любом случае
+//    }
     functionOuter()
 }
 
@@ -14,13 +27,13 @@ fun functionOuter() {
 }
 
 fun functionWithExceptionHandling() {
-    println("functionWithException before")
+    println("functionWithExceptionHandling before")
     try {
         functionInner()
     } catch (t: Throwable) {
         println("catch throwable with info: ${t.message}")
     }
-    println("functionWithException after")
+    println("functionWithExceptionHandling after")
 }
 
 fun functionInner() {
